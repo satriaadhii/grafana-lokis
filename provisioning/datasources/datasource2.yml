@@ -1,0 +1,14 @@
+apiVersion: 1
+
+deleteDatasources:
+  - name: loki-cs
+
+datasources:
+  - name: loki-cs
+    type: loki
+    access: proxy
+    url:  http://loki-cs:3102
+    basicAuth: false
+    isDefault: false
+    version: 1
+    editable: true

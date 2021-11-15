@@ -1,0 +1,14 @@
+apiVersion: 1
+
+deleteDatasources:
+  - name: loki-mqtt
+
+datasources:
+  - name: loki-mqtt
+    type: loki
+    access: proxy
+    url:  http://loki-mqtt:3101
+    basicAuth: false
+    isDefault: false
+    version: 1
+    editable: true
