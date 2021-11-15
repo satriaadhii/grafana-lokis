@@ -31,4 +31,5 @@ services:
 
   paho-listener:
     build: ./paho-listener
-    network-mode: "host"
+    ports:
+      - "1883"
