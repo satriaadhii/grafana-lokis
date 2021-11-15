@@ -20,12 +20,12 @@ services:
     entrypoint:
       - /usr/bin/loki
       - -config.file=/mnt/config/loki-config-mqtt.yaml
+    ports:
+      - "3101:3101"
     networks:
       grafloks:
         aliases:
           - loki-mqtt
-    ports:
-      - "3101:3101"
   
   loki-cs:
     image:  grafana/loki:2.3.0
