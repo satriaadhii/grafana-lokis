@@ -38,7 +38,7 @@ services:
       - "3102:3102"
 
   paho-listener:
-    build: ./paho-
+    build: ./paho-listener
   
   networks:
     grafloks:
