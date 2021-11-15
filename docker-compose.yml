@@ -5,6 +5,7 @@ services:
     image: grafana/grafana:8.2.3
     volumes:
       - ./provisioning:/etc/grafana/provisioning
+      - ./config/grafana.ini:/etc/grafana/grafana.ini
     ports:
       - "3000:3000"
 
