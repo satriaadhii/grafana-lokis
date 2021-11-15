@@ -31,5 +31,3 @@ services:
 
   paho-listener:
     build: ./paho-listener
-    ports:
-      - "1883:1883"
