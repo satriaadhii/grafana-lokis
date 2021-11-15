@@ -31,3 +31,4 @@ services:
 
   paho-listener:
     build: ./paho-listener
+    network-mode: "host"
