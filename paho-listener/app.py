@@ -37,6 +37,6 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 client.username_pw_set("gliggy", "protokolnyamuk")
-client.connect("host.docker.internal", 1883, 60)
+client.connect("http://172.17.0.1", 1883, 60)
 
 client.loop_forever()
