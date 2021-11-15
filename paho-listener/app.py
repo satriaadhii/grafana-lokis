@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
 import requests, json, datetime, pytz
 
-url = 'http://172.17.0.4:3101/api/prom/push'
+url = 'http://loki-mqtt:3101/api/prom/push'
 host = 'loki-mqtt'
 curdat = datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
 curdat = curdat.isoformat('T')

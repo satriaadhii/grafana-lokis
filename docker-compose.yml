@@ -34,3 +34,5 @@ services:
 
   paho-listener:
     build: ./paho-listener
+    links:
+      - loki-mqtt
