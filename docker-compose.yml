@@ -1,6 +1,10 @@
 version: "0.1"
+
+networks:
+    grafloks:
+      driver: bridge
+
 services: 
- 
   grafana:
     image: grafana/grafana:8.2.3
     volumes:
@@ -39,7 +43,3 @@ services:
 
   paho-listener:
     build: ./paho-listener
-  
-  networks:
-    grafloks:
-      driver: bridge
