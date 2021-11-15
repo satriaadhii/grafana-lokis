@@ -7,6 +7,6 @@ My graflok log collectors contains automation and some code that collect the log
 
 ## Targets 
 - [x] Automation 
-- [] Connect to paho
+- [x] Connect to paho
 - [] Connect to serilog
 - [] Validation 
