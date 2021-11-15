@@ -17,7 +17,7 @@ services:
       - /usr/bin/loki
       - -config.file=/mnt/config/loki-config-mqtt.yaml
     networks:
-      bridge:
+      grafloks:
         aliases:
           - loki-mqtt
     ports:
@@ -31,11 +31,15 @@ services:
       - /usr/bin/loki
       - -config.file=/mnt/config/loki-config-cs.yaml
     networks:
-      bridge:
+      grafloks:
         aliases:
           - loki-cs
     ports:
       - "3102:3102"
 
   paho-listener:
-    build: ./paho-listener
+    build: ./paho-
+  
+  networks:
+    grafloks:
+      driver: bridge
