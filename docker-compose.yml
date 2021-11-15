@@ -1,9 +1,5 @@
 version: "0.1"
 
-networks:
-    grafloks:
-      driver: bridge
-
 services: 
   grafana:
     image: grafana/grafana:8.2.3
@@ -12,6 +8,9 @@ services:
       - ./config/grafana.ini:/etc/grafana/grafana.ini
     ports:
       - "3000:3000"
+    links:
+      - loki-mqtt
+      - loki-cs
 
   loki-mqtt:
     image:  grafana/loki:2.3.0
@@ -22,10 +21,6 @@ services:
       - -config.file=/mnt/config/loki-config-mqtt.yaml
     ports:
       - "3101:3101"
-    networks:
-      grafloks:
-        aliases:
-          - loki-mqtt
   
   loki-cs:
     image:  grafana/loki:2.3.0
@@ -34,10 +29,6 @@ services:
     entrypoint:
       - /usr/bin/loki
       - -config.file=/mnt/config/loki-config-cs.yaml
-    networks:
-      grafloks:
-        aliases:
-          - loki-cs
     ports:
       - "3102:3102"
 
