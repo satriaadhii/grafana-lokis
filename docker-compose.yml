@@ -16,6 +16,10 @@ services:
     entrypoint:
       - /usr/bin/loki
       - -config.file=/mnt/config/loki-config-mqtt.yaml
+    networks:
+      bridge:
+        aliases:
+          - loki-mqtt
     ports:
       - "3101:3101"
   
@@ -26,6 +30,10 @@ services:
     entrypoint:
       - /usr/bin/loki
       - -config.file=/mnt/config/loki-config-cs.yaml
+    networks:
+      bridge:
+        aliases:
+          - loki-cs
     ports:
       - "3102:3102"
 
