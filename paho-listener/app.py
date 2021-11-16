@@ -2,15 +2,16 @@ import paho.mqtt.client as mqtt
 import requests, json, datetime, pytz
 
 url = 'http://loki-mqtt:3101/api/prom/push'
-host = 'loki-mqtt'
-curdat = datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
-curdat = curdat.isoformat('T')
+host = 'listener.py'
 
 def on_connect(client, userdata, flags, rc):
 	print("CONNECTED"+str(rc))
 	client.subscribe("#")
 
 def on_message(client, userdata, msg):
+	ms = msg.payload
+	curdat = datetime.datetime.now(pytz.timezone('Asia/Jakarta'))
+	curdat = curdat.isoformat('T')
 	headers = {
     'Content-type': 'application/json'
 	}
@@ -21,7 +22,7 @@ def on_message(client, userdata, msg):
 	            'entries': [
 	                {
 	                    'ts': curdat,
-	                    'line': '[INFO] ' + str(msg.payload)
+	                    'line': ms.decode('utf-8')
 	                }
 	            ]
 	        }
@@ -30,7 +31,7 @@ def on_message(client, userdata, msg):
 	print(payload)
 	payload = json.dumps(payload)
 	a = requests.post(url,data=payload,headers=headers)
-	print(a)
+	print("response: "+a)
 
 client = mqtt.Client()
 client.on_connect = on_connect
