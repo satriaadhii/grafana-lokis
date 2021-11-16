@@ -31,7 +31,7 @@ def on_message(client, userdata, msg):
 	print(payload)
 	payload = json.dumps(payload)
 	a = requests.post(url,data=payload,headers=headers)
-	print("response: "+a)
+	print("response: "+str(a))
 
 client = mqtt.Client()
 client.on_connect = on_connect
