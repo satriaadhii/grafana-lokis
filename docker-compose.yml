@@ -11,6 +11,14 @@ services:
     links:
       - loki-mqtt
       - loki-cs
+      - prometrics
+
+  prometrics:
+    image: prom/prometheus:main
+    volumes:
+      - ./provisioning/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
 
   loki-mqtt:
     image:  grafana/loki:2.3.0

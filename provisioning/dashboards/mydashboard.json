@@ -1,0 +1,225 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 1,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": "loki-mqtt",
+        "gridPos": {
+          "h": 8,
+          "w": 7,
+          "x": 0,
+          "y": 0
+        },
+        "id": 8,
+        "options": {
+          "dedupStrategy": "none",
+          "enableLogDetails": true,
+          "prettifyLogMessage": false,
+          "showCommonLabels": true,
+          "showLabels": false,
+          "showTime": true,
+          "sortOrder": "Descending",
+          "wrapLogMessage": false
+        },
+        "targets": [
+          {
+            "expr": "{topic=~\"vm/312281470C3/pub|vm/312281470C3/sub\"}",
+            "refId": "A"
+          }
+        ],
+        "title": "Lenteng Agung",
+        "type": "logs"
+      },
+      {
+        "datasource": "loki-cs",
+        "description": "Get Proximity Kalimalang",
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 14,
+          "y": 0
+        },
+        "id": 11,
+        "options": {
+          "contentType": "application/json",
+          "icon": "envelope",
+          "isAuth": false,
+          "method": "POST",
+          "orientation": "center",
+          "payload": "{\n  \"kios\": \"31110470C1\",\n  \"sensor\": \"proximity\"\n}",
+          "text": "GETPROX Kalimalang",
+          "type": "header",
+          "url": "https://api.kios.brightgas.co.id/testing",
+          "variant": "primary"
+        },
+        "targets": [
+          {
+            "expr": "{host=\"loki-mqtt\"}",
+            "refId": "A"
+          }
+        ],
+        "title": "Get Proximity Kalimalang",
+        "type": "cloudspout-button-panel"
+      },
+      {
+        "datasource": "loki-mqtt",
+        "gridPos": {
+          "h": 8,
+          "w": 7,
+          "x": 17,
+          "y": 0
+        },
+        "id": 4,
+        "options": {
+          "dedupStrategy": "none",
+          "enableLogDetails": true,
+          "prettifyLogMessage": false,
+          "showCommonLabels": false,
+          "showLabels": false,
+          "showTime": true,
+          "sortOrder": "Descending",
+          "wrapLogMessage": false
+        },
+        "targets": [
+          {
+            "expr": "{topic=~\"vm/31110470C1/pub|vm/31110470C1/sub\"}",
+            "refId": "A"
+          }
+        ],
+        "title": "Kalimalang",
+        "type": "logs"
+      },
+      {
+        "datasource": "loki-mqtt",
+        "description": "Log kios bintaro",
+        "gridPos": {
+          "h": 8,
+          "w": 7,
+          "x": 0,
+          "y": 8
+        },
+        "id": 2,
+        "options": {
+          "dedupStrategy": "none",
+          "enableLogDetails": true,
+          "prettifyLogMessage": false,
+          "showCommonLabels": false,
+          "showLabels": true,
+          "showTime": true,
+          "sortOrder": "Descending",
+          "wrapLogMessage": false
+        },
+        "pluginVersion": "8.2.3",
+        "targets": [
+          {
+            "expr": "{topic=~\"vm/312281460C2/pub|vm/312281460C2/sub\"}",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Bintaro",
+        "type": "logs"
+      },
+      {
+        "datasource": "loki-mqtt",
+        "description": "Log kios Bsd",
+        "gridPos": {
+          "h": 8,
+          "w": 7,
+          "x": 17,
+          "y": 8
+        },
+        "id": 9,
+        "options": {
+          "dedupStrategy": "none",
+          "enableLogDetails": true,
+          "prettifyLogMessage": false,
+          "showCommonLabels": true,
+          "showLabels": true,
+          "showTime": true,
+          "sortOrder": "Descending",
+          "wrapLogMessage": false
+        },
+        "pluginVersion": "8.2.3",
+        "targets": [
+          {
+            "expr": "{topic=~\"vm/31110310C1/pub|vm/31110310C1/sub\"}",
+            "refId": "A"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "BSD",
+        "type": "logs"
+      },
+      {
+        "datasource": "loki-mqtt",
+        "gridPos": {
+          "h": 8,
+          "w": 10,
+          "x": 0,
+          "y": 16
+        },
+        "id": 6,
+        "options": {
+          "dedupStrategy": "none",
+          "enableLogDetails": true,
+          "prettifyLogMessage": false,
+          "showCommonLabels": false,
+          "showLabels": false,
+          "showTime": false,
+          "sortOrder": "Descending",
+          "wrapLogMessage": false
+        },
+        "targets": [
+          {
+            "expr": "{topic=\"vm/token/sub\"}",
+            "refId": "A"
+          }
+        ],
+        "title": "All Transaksi",
+        "type": "logs"
+      }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 31,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-2d",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Kios",
+    "uid": "RjAOasc7k",
+    "version": 9
+  }
