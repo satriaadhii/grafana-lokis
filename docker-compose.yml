@@ -2,7 +2,7 @@ version: "0.1"
 
 services: 
   grafana:
-    image: grafana/grafana:8.2.3
+    image: grafana/grafana:latest
     volumes:
       - ./provisioning:/etc/grafana/provisioning
       - ./config/grafana.ini:/etc/grafana/grafana.ini
@@ -11,6 +11,19 @@ services:
     links:
       - loki-mqtt
       - loki-cs
+      - prometheus
+
+  prometheus:
+    image: prom/prometheus:main
+    volumes:
+      - ./provisioning/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+  node-exporter:
+    image: prom/node-exporter:master
+    ports:
+      - "9100:9100"
 
   loki-mqtt:
     image:  grafana/loki:2.3.0
