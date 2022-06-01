@@ -1,0 +1,66 @@
+version: "3.7"
+
+networks:
+  monitoring:
+    driver: bridge
+
+volumes:
+  prome-data: {}
+
+services:
+  prometheus:
+    image: prom/prometheus:main
+    container_name: sealcap-prome
+    restart: unless-stopped
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prome-data:/prometheus
+    command: 
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    expose:
+      - 9090
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring
+
+  
+  node-exporter:
+    image: prom/node-exporter
+    container_name: sealcap-nodexp
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command: 
+      - '--path.procfs=/host/proc' 
+      - '--path.sysfs=/host/sys'
+      - --collector.filesystem.ignored-mount-points
+      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
+    expose:
+      - 9100
+    networks:
+      - monitoring
+
+  pushgateway:
+    container_name: pushgateway
+    image: prom/pushgateway
+    restart: unless-stopped
+    expose:
+      - 9091
+    ports:
+      - "9091:9091"
+    networks:
+      - monitoring
+
+  pusher:
+    build: ./additional
+    links:
+      - pushgateway
+    networks:
+      - monitoring
