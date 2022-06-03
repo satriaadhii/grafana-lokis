@@ -58,10 +58,3 @@ services:
       - "9091:9091"
     networks:
       - monitoring
-
-  pusher:
-    build: ./additional
-    links:
-      - pushgateway
-    networks:
-      - monitoring
