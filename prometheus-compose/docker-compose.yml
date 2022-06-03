@@ -21,6 +21,7 @@ services:
       - '--web.console.libraries=/etc/prometheus/console_libraries'
       - '--web.console.templates=/etc/prometheus/consoles'
       - '--web.enable-lifecycle'
+      - '--web.external-url=https://sealcapapi.brightgas.co.id/cemtris'
     expose:
       - 9090
     ports:
