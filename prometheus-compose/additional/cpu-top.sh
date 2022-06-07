@@ -7,4 +7,4 @@ done <<< "$z"
 curl -X POST -H  "Content-Type: text/plain" --data "$var
 " http://localhost:9091/metrics/job/top/instance/machine
 echo "=====================+++"
-echo $var2
+echo $var
